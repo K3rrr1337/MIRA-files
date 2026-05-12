@@ -60,7 +60,7 @@
             <div class="flex gap-6 text-xs uppercase tracking-widest font-semibold text-gray-500">
                 <a href="#install" class="hover:text-white transition">Установка</a>
                 <a href="#updates" class="hover:text-white transition">Что нового</a>
-                <a href="https://github.com/K3rrr1337" class="hover:text-white transition italic underline">GitHub Repo</a>
+                <a href="https://github.com/K3rrr1337/MIRA-files" class="hover:text-white transition italic underline">GitHub Repo</a>
             </div>
         </div>
     </nav>
@@ -77,26 +77,23 @@
             <!-- Основной блок управления -->
             <div class="flex flex-col items-center gap-4 mb-16">
                 <div class="glass-card p-2 rounded-xl inline-flex flex-col sm:flex-row gap-2">
-                    <!-- Ссылка на загрузку с GitHub -->
-                    <a href="https://github.com/K3rrr1337/MIRA-files/releases/download/MIRA/dist.rar" class="btn-main px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2">
+                    <a href="https://github.com/K3rrr1337/MIRA-files/releases/download/MIRA/dist.rar" class="btn-main px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 text-sm">
                         <i data-lucide="download" class="w-5 h-5"></i>
-                        СКАЧАТЬ .EXE
+                        СКАЧАТЬ .RAR
                     </a>
-                    <!-- Кнопка Telegram -->
-                    <a href="https://t.me/t.me/kerrr1337_pub" class="btn-tg px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
+                    <a href="https://t.me/kerrr1337_pub" class="btn-tg px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 text-sm">
                         <i data-lucide="send" class="w-5 h-5"></i>
                         TELEGRAM
                     </a>
                 </div>
-                <!-- Ссылка на исходный код под кнопками -->
-                <a href="https://github.com/ТВОЙ_НИК/РЕПОЗИТОРИЙ" class="text-gray-500 hover:text-white text-xs font-mono transition flex items-center gap-2">
+                <a href="https://github.com/K3rrr1337/MIRA-files" class="text-gray-500 hover:text-white text-[10px] font-mono transition flex items-center gap-2 uppercase tracking-wider">
                     <i data-lucide="github" class="w-4 h-4"></i>
                     view source code on github
                 </a>
             </div>
 
-            <!-- Имитация интерфейса из MIRA Loader 12.05.2026 21_22_10.png -->
-            <div class="relative max-w-3xl mx-auto rounded-lg shadow-2xl border border-white/10 overflow-hidden shadow-white/5">
+            <!-- Изображение MIRALoader.png из GitHub -->
+            <div class="relative max-w-3xl mx-auto rounded-lg shadow-2xl border border-white/10 overflow-hidden shadow-white/5 bg-[#121212]">
                 <div class="bg-[#1a1a1a] px-4 py-2 border-b border-white/5 flex justify-between items-center text-[10px] text-gray-500 font-mono">
                     <span>MIRA_LOADER_STABLE_V12.05</span>
                     <div class="flex gap-2">
@@ -104,16 +101,20 @@
                         <div class="w-2 h-2 rounded-full bg-white/20"></div>
                     </div>
                 </div>
-                <img src="MIRA Loader 12.05.2026 21_22_10.png" alt="Loader Preview" class="w-full">
+                <!-- Ссылка на MIRALoader.png в корне ветки main -->
+                <img src="https://raw.githubusercontent.com/K3rrr1337/MIRA-files/main/MIRALoader.png" 
+                     alt="MIRA Loader UI" 
+                     class="w-full h-auto block"
+                     onerror="this.src='https://via.placeholder.com/800x600/121212/ffffff?text=MIRALoader.png+not+found'">
             </div>
         </div>
     </section>
 
-    <!-- Секция Установка и Что нового -->
+    <!-- Инфо-секции -->
     <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
         
         <div id="install">
-            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 uppercase tracking-tighter">
                 <i data-lucide="terminal" class="w-5 h-5 text-gray-500"></i> Установка
             </h2>
             <div class="space-y-4 text-gray-400 text-sm">
@@ -124,30 +125,30 @@
         </div>
 
         <div id="updates">
-            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 uppercase tracking-tighter">
                 <i data-lucide="history" class="w-5 h-5 text-gray-500"></i> Что нового
             </h2>
-            <ul class="space-y-4 text-sm text-gray-400">
-                <li class="flex gap-3">
-                    <span class="text-white font-bold">12.05:</span> 
+            <ul class="space-y-4 text-sm text-gray-400 font-medium">
+                <li class="flex gap-3 items-start">
+                    <span class="text-white border-b border-white/20">12.05:</span> 
                     Релиз стабильной версии лоадера v12.05.
                 </li>
-                <li class="flex gap-3">
-                    <span class="text-white font-bold">10.05:</span> 
+                <li class="flex gap-3 items-start">
+                    <span class="text-white border-b border-white/20">10.05:</span> 
                     Оптимизирована работа с GitHub API.
                 </li>
-                <li class="flex gap-3">
-                    <span class="text-white font-bold">05.05:</span> 
-                    Обновлен интерфейс инструкции.
+                <li class="flex gap-3 items-start">
+                    <span class="text-white border-b border-white/20">05.05:</span> 
+                    Обновлен интерфейс и блок инструкций.
                 </li>
             </ul>
         </div>
         
     </section>
 
-    <footer class="py-10 border-t border-white/5 text-center">
-        <div class="text-gray-600 text-[10px] tracking-[0.2em] uppercase">
-            Designed for Mira Community &copy; 2026
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="text-gray-600 text-[10px] tracking-[0.3em] uppercase font-bold">
+            Mira Project &copy; 2026 / github.com/K3rrr1337
         </div>
     </footer>
 
