@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="Avatar.ico">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #141414;
+            --panel: #1c1c1c;
+            --accent: #ffffff; /* Классический красный */
+            --border: #2d2d2d;
+            --text: #e0e0e0;
+            --text-muted: #777;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        /* Заголовок окна */
+        .titlebar {
+            height: 40px; background: var(--panel); border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 15px; -webkit-app-region: drag;
+        }
+        .title { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .win-ctrls { display: flex; gap: 15px; -webkit-app-region: no-drag; }
+        .win-btn { cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+        .win-btn:hover { color: #fff; }
+
+        /* Основная сетка */
+        .wrapper { flex: 1; display: grid; grid-template-columns: 220px 1fr; overflow: hidden; }
+
+        /* Левое меню (классика) */
+        aside {
+            background: #181818; border-right: 1px solid var(--border);
+            display: flex; flex-direction: column; padding: 20px 0;
+        }
+        .menu-item {
+            padding: 12px 25px; font-size: 13px; font-weight: 500; color: var(--text-muted);
+            cursor: pointer; transition: 0.2s; border-left: 3px solid transparent;
+        }
+        .menu-item:hover { background: #1c1c1c; color: #fff; }
+        .menu-item.active { color: var(--accent); border-left-color: var(--accent); background: #1c1c1c; }
+
+        /* Контент */
+        section { padding: 40px; display: flex; flex-direction: column; }
+        .tab-content { display: none; height: 100%; }
+        .tab-content.active { display: block; }
+
+        h1 { font-size: 28px; font-weight: 900; margin-bottom: 10px; color: #fff; }
+        .desc { font-size: 14px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.5; }
+
+        /* Поле выбора пути */
+        .input-group {
+            background: #0f0f0f; border: 1px solid var(--border); padding: 15px;
+            display: flex; align-items: center; gap: 15px; cursor: pointer;
+        }
+        .input-group:hover { border-color: #444; }
+        .path-info label { display: block; font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px; }
+        .path-info span { font-family: 'JetBrains Mono'; font-size: 12px; color: #aaa; }
+
+        /* Консоль (лог) */
+        .console {
+            margin-top: auto; background: #0a0a0a; border: 1px solid var(--border);
+            height: 120px; padding: 10px; font-family: 'JetBrains Mono'; font-size: 11px;
+            overflow-y: auto; color: #555;
+        }
+        .log-msg { margin-bottom: 4px; }
+        .log-msg.new { color: var(--accent); }
+
+        /* Футер */
+        footer {
+            height: 80px; background: var(--panel); border-top: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 30px;
+        }
+
+        .progress-box { flex: 1; margin-right: 40px; }
+        .p-text { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .p-bar-bg { height: 6px; background: #111; border-radius: 3px; overflow: hidden; }
+        .p-bar-fill { height: 100%; background: var(--accent); width: 0%; transition: 0.3s; }
+
+        .btn-install {
+            background: #ffffff; color: #000000; border: none; padding: 12px 35px;
+            font-size: 14px; font-weight: 700; text-transform: uppercase; cursor: pointer;
+            border-radius: 3px; transition: 0.2s;
+        }
+        .btn-install:hover { background: #f0f0f0; }
+        .btn-install:disabled { background: #cccccc; color: #666666; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+    <div class="titlebar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="Avatar.ico" style="width: 20px; height: 20px;" alt="MIRA">
+            <div class="title">MIRA Loader</div>
+        </div>
+        <div class="win-ctrls">
+            <i data-lucide="minus" class="win-btn" onclick="pywebview.api.minimize()"></i>
+            <i data-lucide="x" class="win-btn" onclick="pywebview.api.exit()"></i>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <aside>
+            <div class="menu-item active" onclick="tab('instructions', this)">Инструкция</div>
+            <div class="menu-item" onclick="tab('main', this)">Установка</div>
+            <div class="menu-item" onclick="tab('changelog', this)">Что нового</div>
+            <div class="menu-item" onclick="tab('settings', this)">Информация</div>
+        </aside>
+
+         <section>
+            <div id="instructions" class="tab-content active">
+                <h1>Инструкция</h1>
+                <p class="desc">1. Установитте оригинальную CSGO.</p>
+                <p class="desc">2. Выберите папку с игрой.</p>
+                <p class="desc">3. Нажмите "Установить модификацию".</p>
+                <p class="desc">4. Ожидайте установку модификации.</p>
+                <p class="desc">5. Готово, закройте установщик, запустите файл migi.exe.</p>
+                <p class="desc">6. Нажмите кнопку Update Build.</p>
+            </div>
+
+        <section>
+            <div id="main" class="tab-content">
+                <h1>Установка модификации</h1>
+                <p class="desc">Добро пожаловать в загрузчик модификации MIRA. Пожалуйста, выберите папку с игрой для начала процесса.</p>
+
+                <div class="input-group" onclick="chooseFolder()">
+                    <i data-lucide="folder" style="color:var(--accent)"></i>
+                    <div class="path-info">
+                        <label>Целевой путь</label>
+                        <span id="path-txt">Путь не выбран</span>
+                    </div>
+                </div>
+
+                <div class="console" id="console">
+                    <div class="log-msg">Ожидание инициализации...</div>
+                </div>
+            </div>
+
+            <div id="changelog" class="tab-content">
+                <h1>Список изменений</h1>
+                <div id="version-data" style="font-family:'JetBrains Mono'; font-size: 13px; color: #888; white-space: pre-wrap; line-height: 1.6;">1. Новый вид загрузчика.</div>
+                <div id="version-data" style="font-family:'JetBrains Mono'; font-size: 13px; color: #888; white-space: pre-wrap; line-height: 1.6;">2. Рабочие новости в CSGO.</div>
+                <div id="version-data" style="font-family:'JetBrains Mono'; font-size: 13px; color: #888; white-space: pre-wrap; line-height: 1.6;">3. Исправлены баги.</div>
+                <div id="version-data" style="font-family:'JetBrains Mono'; font-size: 13px; color: #888; white-space: pre-wrap; line-height: 1.6;">4. Добавлен режим "Запретная зона" для CSGO.</div>
+                <div id="version-data" style="font-family:'JetBrains Mono'; font-size: 13px; color: #888; white-space: pre-wrap; line-height: 1.6;">5. Добавлены карты для запретной зоны.</div>
+            </div>
+
+            <div id="settings" class="tab-content">
+                <h1>Информация</h1>
+                <div style="color: #888; font-size: 14px; line-height: 2;">
+                    <div>Версия лаунчера: <b style="color:#eee">1.0</b></div>
+                    <div>Последняя проверка: <b id="last-check" style="color:#eee">12.05.2026</b></div>
+                    <div>Разработчик: <b style="color:#eee">Kerrr1337</b></div>
+                    <div>Дизайнер загрузчика: <b style="color:#eee">Teto</b></div>
+                    <div>Около-разработчик: <b style="color:#eee">PelmemDev</b></div>
+                    <div>Телеграм канал разработчика: <b style="color:#eee">t.me/kerrr1337_pub</b></div>
+                    <div>Телеграм канал около-разработчика: <b style="color:#eee">t.me/CSGOINVENTORY123</b></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="progress-box">
+            <div class="p-text">
+                <span id="status-txt">Готов к работе</span>
+                <span id="percent-txt">0%</span>
+            </div>
+            <div class="p-bar-bg">
+                <div class="p-bar-fill" id="p-fill"></div>
+            </div>
+        </div>
+        <button class="btn-install" id="action-btn" onclick="install()">Установить</button>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        let currentGamePath = "";
+
+        // Загрузка конфига при старте
+        window.addEventListener('pywebviewready', async () => {
+            const cfg = await pywebview.api.init_app();
+            if(cfg.path) {
+                currentGamePath = cfg.path;
+                document.getElementById('path-txt').innerText = cfg.path;
+                addLog(`Загружена конфигурация: ${cfg.path}`);
+            }
+            document.getElementById('last-check').innerText = cfg.last_run;
+            loadVersion();
+        });
+
+        function tab(id, el) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+        }
+
+        async function chooseFolder() {
+            const res = await pywebview.api.select_folder();
+            if(res) {
+                currentGamePath = res;
+                document.getElementById('path-txt').innerText = res;
+                addLog(`Выбран новый путь: ${res}`);
+            }
+        }
+
+        function install() {
+            if(!currentGamePath) return alert("Укажите папку с игрой!");
+            document.getElementById('action-btn').disabled = true;
+            pywebview.api.start_install(currentGamePath);
+        }
+
+        function updateUI(msg, prg, done = null) {
+            document.getElementById('status-txt').innerText = msg;
+            document.getElementById('percent-txt').innerText = prg + "%";
+            document.getElementById('p-fill').style.width = prg + "%";
+            addLog(msg, true);
+
+            if(done === true) {
+                document.getElementById('action-btn').disabled = false;
+                document.getElementById('action-btn').innerText = "ЗАПУСТИТЬ";
+                addLog("Процесс успешно завершен.");
+            }
+        }
+
+        function addLog(text, highlight = false) {
+            const con = document.getElementById('console');
+            const div = document.createElement('div');
+            div.className = highlight ? 'log-msg new' : 'log-msg';
+            div.innerText = `[${new Date().toLocaleTimeString()}] ${text}`;
+            con.appendChild(div);
+            con.scrollTop = con.scrollHeight;
+        }
+
+        async function loadVersion() {
+            try {
+                const r = await fetch('https://raw.githubusercontent.com/sanyaleks2012-lab/ClassicGO/main/version.txt');
+                const t = await r.text();
+                document.getElementById('version-data').innerText = t.replace(/"/g, "").replace(/\\n/g, "\n");
+            } catch(e) { document.getElementById('version-data').innerText = "Ошибка сети."; }
+        }
+    </script>
+</body>
+</html>
