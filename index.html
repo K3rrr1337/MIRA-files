@@ -31,6 +31,15 @@
             transform: scale(1.02);
             filter: brightness(0.9);
         }
+        .btn-tg {
+            background-color: #24A1DE;
+            color: #ffffff;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-tg:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
         .code-block {
             background: #050505;
             border-left: 2px solid #333;
@@ -51,7 +60,7 @@
             <div class="flex gap-6 text-xs uppercase tracking-widest font-semibold text-gray-500">
                 <a href="#install" class="hover:text-white transition">Установка</a>
                 <a href="#updates" class="hover:text-white transition">Что нового</a>
-                <a href="https://github.com/" class="text-white border-b border-white/20">GitHub</a>
+                <a href="https://github.com/K3rrr1337" class="hover:text-white transition italic underline">GitHub Repo</a>
             </div>
         </div>
     </nav>
@@ -66,14 +75,23 @@
             </p>
 
             <!-- Основной блок управления -->
-            <div class="glass-card p-2 rounded-xl inline-flex flex-col sm:flex-row gap-2 mb-16">
-                <a href="#" class="btn-main px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2">
-                    <i data-lucide="download" class="w-5 h-5"></i>
-                    СКАЧАТЬ .EXE
-                </a>
-                <a href="https://github.com/" class="px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-white/5 transition">
-                    <i data-lucide="code-2" class="w-5 h-5"></i>
-                    SOURCE CODE
+            <div class="flex flex-col items-center gap-4 mb-16">
+                <div class="glass-card p-2 rounded-xl inline-flex flex-col sm:flex-row gap-2">
+                    <!-- Ссылка на загрузку с GitHub -->
+                    <a href="https://github.com/K3rrr1337/MIRA-files/releases/download/MIRA/dist.rar" class="btn-main px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        СКАЧАТЬ .EXE
+                    </a>
+                    <!-- Кнопка Telegram -->
+                    <a href="https://t.me/t.me/kerrr1337_pub" class="btn-tg px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                        TELEGRAM
+                    </a>
+                </div>
+                <!-- Ссылка на исходный код под кнопками -->
+                <a href="https://github.com/ТВОЙ_НИК/РЕПОЗИТОРИЙ" class="text-gray-500 hover:text-white text-xs font-mono transition flex items-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    view source code on github
                 </a>
             </div>
 
@@ -99,9 +117,9 @@
                 <i data-lucide="terminal" class="w-5 h-5 text-gray-500"></i> Установка
             </h2>
             <div class="space-y-4 text-gray-400 text-sm">
-                <div class="code-block p-4 rounded">1. Скачайте актуальный билд с GitHub.</div>
-                <div class="code-block p-4 rounded">2. Укажите путь к корневой папке игры.</div>
-                <div class="code-block p-4 rounded">3. Нажмите "Установить" и дождитесь завершения.</div>
+                <div class="code-block p-4 rounded">1. Установите оригинальную CSGO.</div>
+                <div class="code-block p-4 rounded">2. Выберите папку с игрой в лоадере.</div>
+                <div class="code-block p-4 rounded">3. Нажмите "Установить" и дождитесь 100%.</div>
             </div>
         </div>
 
@@ -112,15 +130,15 @@
             <ul class="space-y-4 text-sm text-gray-400">
                 <li class="flex gap-3">
                     <span class="text-white font-bold">12.05:</span> 
-                    Исправлена ошибка отображения прогресс-бара.
+                    Релиз стабильной версии лоадера v12.05.
                 </li>
                 <li class="flex gap-3">
                     <span class="text-white font-bold">10.05:</span> 
-                    Добавлена поддержка Panorama UI.
+                    Оптимизирована работа с GitHub API.
                 </li>
                 <li class="flex gap-3">
                     <span class="text-white font-bold">05.05:</span> 
-                    Оптимизация скорости загрузки файлов.
+                    Обновлен интерфейс инструкции.
                 </li>
             </ul>
         </div>
