@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRA LOADER | Official</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f0f0f;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+        .loader-gradient {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 100%);
+        }
+        .glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .btn-main {
+            background-color: #ffffff;
+            color: #000000;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-main:hover {
+            transform: scale(1.02);
+            filter: brightness(0.9);
+        }
+        .code-block {
+            background: #050505;
+            border-left: 2px solid #333;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Навигация -->
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-[#0f0f0f]/80 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 bg-white rounded-sm flex items-center justify-center">
+                    <span class="text-black font-black text-sm">M</span>
+                </div>
+                <span class="font-bold tracking-tight text-lg">MIRA LOADER</span>
+            </div>
+            <div class="flex gap-6 text-xs uppercase tracking-widest font-semibold text-gray-500">
+                <a href="#install" class="hover:text-white transition">Установка</a>
+                <a href="#updates" class="hover:text-white transition">Что нового</a>
+                <a href="https://github.com/" class="text-white border-b border-white/20">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Геро-секция -->
+    <section class="pt-32 pb-20 px-6 loader-gradient">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-6xl font-extrabold mb-6 tracking-tighter">MIRA LOADER</h1>
+            <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+                Простой и эффективный инструмент для модификации игры. 
+                Всего одна кнопка до результата.
+            </p>
+
+            <!-- Основной блок управления -->
+            <div class="glass-card p-2 rounded-xl inline-flex flex-col sm:flex-row gap-2 mb-16">
+                <a href="#" class="btn-main px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2">
+                    <i data-lucide="download" class="w-5 h-5"></i>
+                    СКАЧАТЬ .EXE
+                </a>
+                <a href="https://github.com/" class="px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-white/5 transition">
+                    <i data-lucide="code-2" class="w-5 h-5"></i>
+                    SOURCE CODE
+                </a>
+            </div>
+
+            <!-- Имитация интерфейса из MIRA Loader 12.05.2026 21_22_10.png -->
+            <div class="relative max-w-3xl mx-auto rounded-lg shadow-2xl border border-white/10 overflow-hidden shadow-white/5">
+                <div class="bg-[#1a1a1a] px-4 py-2 border-b border-white/5 flex justify-between items-center text-[10px] text-gray-500 font-mono">
+                    <span>MIRA_LOADER_STABLE_V12.05</span>
+                    <div class="flex gap-2">
+                        <div class="w-2 h-2 rounded-full bg-white/10"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/20"></div>
+                    </div>
+                </div>
+                <img src="MIRA Loader 12.05.2026 21_22_10.png" alt="Loader Preview" class="w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Установка и Что нового -->
+    <section class="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
+        
+        <div id="install">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i data-lucide="terminal" class="w-5 h-5 text-gray-500"></i> Установка
+            </h2>
+            <div class="space-y-4 text-gray-400 text-sm">
+                <div class="code-block p-4 rounded">1. Скачайте актуальный билд с GitHub.</div>
+                <div class="code-block p-4 rounded">2. Укажите путь к корневой папке игры.</div>
+                <div class="code-block p-4 rounded">3. Нажмите "Установить" и дождитесь завершения.</div>
+            </div>
+        </div>
+
+        <div id="updates">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i data-lucide="history" class="w-5 h-5 text-gray-500"></i> Что нового
+            </h2>
+            <ul class="space-y-4 text-sm text-gray-400">
+                <li class="flex gap-3">
+                    <span class="text-white font-bold">12.05:</span> 
+                    Исправлена ошибка отображения прогресс-бара.
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-white font-bold">10.05:</span> 
+                    Добавлена поддержка Panorama UI.
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-white font-bold">05.05:</span> 
+                    Оптимизация скорости загрузки файлов.
+                </li>
+            </ul>
+        </div>
+        
+    </section>
+
+    <footer class="py-10 border-t border-white/5 text-center">
+        <div class="text-gray-600 text-[10px] tracking-[0.2em] uppercase">
+            Designed for Mira Community &copy; 2026
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
